@@ -9,11 +9,22 @@ function App(props) {
     ...data
   ]);
   console.log(data);
+
+  const addNewMember = member => {
+    const newMember = {
+      id: Date.now(),
+      name: member.name,
+      email: member.email,
+      class: member.class,
+      level: member.level
+    };
+    setTeamList([...teamList, newMember])
+  }
   return (
     <div>
       <h1>Dungeons and Dragons Team Builder</h1>
       <div>
-        <Form />
+        <Form addNewMember={addNewMember} />
         <Members members={teamList} />
       </div>
     </div>

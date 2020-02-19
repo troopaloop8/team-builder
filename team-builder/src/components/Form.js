@@ -12,17 +12,58 @@ const TeamForm = props => {
           }
     ]);
 
-    
+    const handleChanges = event => {
+        setMember({ ...member, [event.target.name]: event.target.value })
+    }
+
+    const submitForm = event => {
+        console.log("Submitting!");
+        event.preventDefault();
+        props.addNewMember(member);
+        setMember({
+            name: "",
+            email: "",
+            class: "",
+            level: ""
+        })
+    }
 
     return (
-        <form>
-            <label htmlFor='name'>Name</label>
+        <form onSubmit={submitForm}>
+            <label htmlFor='name'>Name: </label>
             <input 
             type="text"
             placeholder="Enter Name"
             id="name"
             name="name"
+            onChange={handleChanges}
              />
+             <label htmlFor='email'>Email: </label>
+            <input 
+            type="email"
+            placeholder="Enter Email"
+            id="email"
+            name="email"
+            onChange={handleChanges}
+             />
+             <label htmlFor='class'>Class: </label>
+            <input 
+            type="text"
+            placeholder="Enter Class"
+            id="class"
+            name="class"
+            onChange={handleChanges}
+             />
+             <label htmlFor='level'>Level: </label>
+            <input 
+            type="number"
+            placeholder="Enter Level"
+            id="level"
+            name="level"
+            onChange={handleChanges}
+             />
+
+            <button type='submit'>Add Member</button>
         </form>
     )
 }
